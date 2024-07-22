@@ -66,17 +66,17 @@ Note: Mask values should be binarized at a threshold of 128. Labels might be les
    - Display the corresponding mask image.
      
 # Load and Split Data**:
-   - Load data from HDF5 files.
+   - Load data from system.
    - Split the dataset into training, validation, and test sets.
 
 # Model Architecture:
    - The U-Net model is used for segmentation. The architecture consists of a contracting path (encoder) to capture context and a symmetric expanding path (decoder) to enable precise localization.
-
-Contracting Path
-The contracting path follows the typical architecture of a convolutional network. It consists of repeated application of two 3x3 convolutions (unpadded convolutions), each followed by a rectified linear unit (ReLU) and a 2x2 max pooling operation with stride 2 for downsampling. At each downsampling step, the number of feature channels is doubled.
-
-Expanding Path 
-Every step in the expansive path consists of an upsampling of the feature map followed by a 2x2 convolution ("up-convolution") that halves the number of feature channels, a concatenation with the correspondingly cropped feature map from the contracting path, and two 3x3 convolutions, each followed by a ReLU. The cropping is necessary due to the loss of border pixels in every convolution..
+   -
+   - Contracting Path
+   - The contracting path follows the typical architecture of a convolutional network. It consists of repeated application of two 3x3 convolutions (unpadded convolutions), each followed by a rectified linear unit (ReLU) and a 2x2 max pooling operation with stride 2 for downsampling. At each downsampling step, the number of feature channels is doubled.
+   -
+   - Expanding Path
+   - Every step in the expansive path consists of an upsampling of the feature map followed by a 2x2 convolution ("up-convolution") that halves the number of feature channels, a concatenation with the correspondingly cropped feature map from the contracting path, and two 3x3 convolutions, each followed by a ReLU. The cropping is necessary due to the loss of border pixels in every convolution..
 
 # Define Callbacks:
   
