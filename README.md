@@ -1,4 +1,29 @@
-Here's a revised description for our model repository, including details about the use of HDF5 files, the CNN-based U-Net model, and performance measurement:
+# Road Network Extraction from Satellite Images using U-Net
+This repository contains the code for a deep learning model based on the U-Net architecture to extract road networks from satellite images.
+
+# Table of Contents
+Installation
+Dataset
+Data Preparation
+Model Architecture
+Training the Model
+Evaluating the Model
+Results
+Acknowledgments
+
+# Installation
+To run the code, you need to have the following libraries installed:
+pip install numpy 
+pip install opencv-python 
+pip install matplotlib 
+pip install scikit-learn 
+pip install tensorflow keras
+
+# Dataset
+The dataset includes satellite images and corresponding binary masks indicating road networks. Images and masks are stored in a single folder without subdirectories.
+
+# Data Preparation
+The prepare_data function reads images and masks, resizes them to a target size, and normalizes the images. The masks are binarized.
 
 # Satellite Imagery-Based Road Network Extraction
 
@@ -21,50 +46,38 @@ Each image is paired with a grayscale mask where:
 
 Note: Mask values should be binarized at a threshold of 128. Labels might be less accurate in rural areas, with some small roads intentionally unannotated.
 
-# Setup Instructions
-
-1. **Define Dataset Path**:
-   Update the dataset root folder path with your Google Drive location:
-   dataset_root_folder = 'D:\\D- ops_sadhok\\train'
-  
-2. **Initialize MinMaxScaler**:
-   from sklearn.preprocessing import MinMaxScaler
-   minmaxscaler = MinMaxScaler()
-
-3. **Create HDF5 Files**:
-   Prepare HDF5 files for storing image and mask patches:
- 
-   import h5py
-   with h5py.File('image_dataset.h5', 'w') as image_h5, h5py.File('mask_dataset.h5', 'w') as mask_h5:
-       image_dataset = []
-       mask_dataset = []
-   ```
-
-4. **Data Processing**:
+# Data Processing:
    - Ensure reproducibility with a fixed random seed.
    - Randomly select an image index.
    - Extract and preprocess image and mask patches, removing any extra dimensions.
 
-5. **Data Visualization**:
+# Data Visualization:
    - Display the satellite image.
    - Display the corresponding mask image.
-
-6. **Load and Split Data**:
+     
+# Load and Split Data**:
    - Load data from HDF5 files.
    - Split the dataset into training, validation, and test sets.
 
-7. **Model Architecture**:
-   - Use a CNN-based U-Net model for road network extraction.
+# Model Architecture:
+   - The U-Net model is used for segmentation. The architecture consists of a contracting path (encoder) to capture context and a symmetric expanding path (decoder) to enable precise localization.
 
-8. **Define Callbacks**:
+Contracting Path
+The contracting path follows the typical architecture of a convolutional network. It consists of repeated application of two 3x3 convolutions (unpadded convolutions), each followed by a rectified linear unit (ReLU) and a 2x2 max pooling operation with stride 2 for downsampling. At each downsampling step, the number of feature channels is doubled.
+
+Expanding Path 
+Every step in the expansive path consists of an upsampling of the feature map followed by a 2x2 convolution ("up-convolution") that halves the number of feature channels, a concatenation with the correspondingly cropped feature map from the contracting path, and two 3x3 convolutions, each followed by a ReLU. The cropping is necessary due to the loss of border pixels in every convolution..
+
+# Define Callbacks:
   
    from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 
    checkpoint = ModelCheckpoint('unet_model.keras', monitor='val_loss', verbose=1, save_best_only=True)
    early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1)
 
-9. **Train the Model**:
+# Train the Model**:
    Train the model using the training and validation datasets:
+   The model is trained with a checkpoint callback to save the best model based on validation loss.
  
    history = model.fit(X_train, y_train,
                        validation_data=(X_val, y_val),
@@ -73,30 +86,16 @@ Note: Mask values should be binarized at a threshold of 128. Labels might be les
                        callbacks=[checkpoint, early_stopping])
   
 
-10. **Evaluate Model Performance**:
+# Evaluate Model Performance:
     - Evaluate the model on the validation set during training.
     - Test the model on the split training, validation, and test datasets.
 
-11. **Model Testing**:
+# Model Testing:
     - Load test data.
     - Make predictions on the test set.
 
-12. **Visualization of Predictions**:
+# Visualization of Predictions:
     - Randomly select an image index from the test set.
     - Display the original satellite image.
     - Display the predicted mask image.
 
-## Libraries Used
-
-- os: For file operations.
-- cv2: For image processing.
-- PIL: For image handling.
-- numpy: For numerical operations.
-- patchify: For image patch extraction.
-- sklearn.preprocessing: For data scaling.
-- matplotlib: For visualization.
-- random: For random operations.
-
----
-
-Feel free to adjust the specifics according to your setup and findings!
