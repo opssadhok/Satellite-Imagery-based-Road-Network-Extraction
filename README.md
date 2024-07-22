@@ -103,12 +103,14 @@ Note: Mask values should be binarized at a threshold of 128. Labels might be les
 
     ## Road Network Extraction Results
 
-The following images demonstrate the results of our road network extraction model.
 
-!Satellite Image/Mask Image](Screenshot (51).png)
+The following reference images demonstrate the results of our road network extraction model.
 
-![Performance](Screenshot (52).png)
+### Satellite Image and Mask Image
+![Satellite Image/Mask Image](Screenshot%20(51).png)
 
+### Performance
+![Performance](Screenshot%20(52).png)
 
     
 #  Acknowledgments
