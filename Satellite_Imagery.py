@@ -1,14 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-
-
-
-# In[1]:
-
 
 import random
 import matplotlib.pyplot as plt
@@ -181,8 +170,6 @@ model.fit(
 )
 
 
-# In[ ]:
-
 
 from tensorflow.keras.callbacks import ModelCheckpoint
 
@@ -195,6 +182,7 @@ checkpoint_callback = ModelCheckpoint(
     verbose=1  # Verbosity mode
 )
 
+
 # Train the model with the checkpoint callback
 history = model.fit(
     train_images, 
@@ -205,8 +193,6 @@ history = model.fit(
     callbacks=[checkpoint_callback]  # Include the checkpoint callback
 )
 
-
-# In[ ]:
 
 
 # Save the model
@@ -315,10 +301,4 @@ for i in range(len(original_images)):
 
 plt.tight_layout()
 plt.show()
-
-
-# In[ ]:
-
-
-
 
