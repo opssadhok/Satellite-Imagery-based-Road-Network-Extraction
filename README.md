@@ -2,14 +2,14 @@
 This repository contains the code for a deep learning model based on the U-Net architecture to extract road networks from satellite images.
 
 # Table of Contents
-**Installation**
-**Dataset**
-**Data Preparation**
-**Model Architecture**
-**Training the Model**
-**Evaluating the Model**
-**Results**
-**Acknowledgments**
+ -**Installation**
+ -**Dataset**
+ -**Data Preparation**
+ -**Model Architecture**
+ -**Training the Model**
+ -**Evaluating the Model**
+ -**Results**
+ -**Acknowledgments**
 
 # Installation
 To run the code, you need to have the following libraries installed:
