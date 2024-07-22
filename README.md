@@ -11,17 +11,9 @@ This repository contains the code for a deep learning model based on the U-Net a
    - **Results**
    - **Acknowledgments**
   
-# Table of Contents
- -**Installation**
- -**Dataset**
- -**Data Preparation**
- -**Model Architecture**
- -**Training the Model**
- -**Evaluating the Model**
- -**Results**
- -**Acknowledgments**
 
 # Installation
+Enviroment - Jupyter Notebook
 To run the code, you need to have the following libraries installed:
 pip install numpy 
 pip install opencv-python 
