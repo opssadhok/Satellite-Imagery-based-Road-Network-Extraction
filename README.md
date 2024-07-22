@@ -57,7 +57,7 @@ Note: Mask values should be binarized at a threshold of 128. Labels might be les
    - Display the satellite image.
    - Display the corresponding mask image.
      
-# Load and Split Data**:
+# Load and Split Data:
    - Load data from system.
    - Split the dataset into training, validation, and test sets.
 
@@ -77,7 +77,7 @@ Note: Mask values should be binarized at a threshold of 128. Labels might be les
    checkpoint = ModelCheckpoint('unet_model.keras', monitor='val_loss', verbose=1, save_best_only=True)
    early_stopping = EarlyStopping(monitor='val_loss', patience=5, verbose=1)
 
-# Train the Model**:
+# Train the Model:
    Train the model using the training and validation datasets:
    The model is trained with a checkpoint callback to save the best model based on validation loss.
  
@@ -100,6 +100,16 @@ Note: Mask values should be binarized at a threshold of 128. Labels might be les
     - Randomly select an image index from the test set.
     - Display the original satellite image.
     - Display the predicted mask image.
+
+    ## Road Network Extraction Results
+
+The following images demonstrate the results of our road network extraction model.
+
+!Satellite Image](images/original_satellite.png)
+
+![Predicted Mask](images/predicted_mask.png)
+
+
     
 #  Acknowledgments
 I want to express my sincere gratitude to everyone who took the time to review and visit this GitHub repository. This project would not have been possible without your valuable feedback and support.
